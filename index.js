@@ -35,6 +35,11 @@ async function run() {
     try {
         const userCollection = client.db('cashWave').collection('users')
 
+        app.get('/users', async (req, res) => {
+            const result = await userCollection.find().toArray();
+            res.send(result);
+          })
+
         // Save a user data in db
         app.post('/user', async (req, res) => {
             const userData = req.body
